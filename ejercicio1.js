@@ -1,4 +1,5 @@
 var form = document.getElementById("formulario");
+
 form.addEventListener("submit", function ( event ) {
     // evitar el envio del formulario
     event.preventDefault();
