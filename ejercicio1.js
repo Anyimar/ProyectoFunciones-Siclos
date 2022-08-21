@@ -5,14 +5,18 @@ form.addEventListener("submit", function ( event ) {
     limpiarErrrores();
 
     //obteniendo campos
-    var nombre = document.getElementById("nombre").value;
+    let nombre = document.getElementById("nombre").value;
     let asunto = document.getElementById("asunto").value;
     let mensaje = document.getElementById("mensaje").value;
 
     //validar campos vacios
     llenarCampo(nombre, asunto, mensaje);
     
-    validar(nombre, asunto, mensaje);
+    let resultado = validar(nombre, asunto, mensaje);
+    
+    if (resultado == true) {
+        exito();
+    }
 
 }, false);
 
@@ -38,17 +42,23 @@ function llenarCampo(nom, asu, men) {
 }
 
 function validar(nom, asu, men) {
+    let aprobar = true;
     let patron = /[0-9]/gim;
 
     if (patron.test(nom)) {
         document.querySelector(".errorNombre").innerHTML = "Solo se admiten letras"
-    }
+        aprobar = false;
+    } 
 
     if (patron.test(asu)) {
         document.querySelector(".errorAsunto").innerHTML = "Solo se admiten letras"
-    }
+        aprobar = false;
+    }  
 
     if (patron.test(men)) {
         document.querySelector(".errorMensaje").innerHTML = "Solo se admiten letras"
-    }
+        aprobar = false;
+    } 
+
+    return aprobar;
 }
